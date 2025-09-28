@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <style>
+        .modal-bg {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s;
+        }
+        .modal-bg.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .modal-content {
+            background: #232a34;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px #ff003c55;
+            padding: 2rem 1.5rem;
+            max-width: 400px;
+            width: 90vw;
+            color: #fff;
+            transform: translateY(40px);
+            opacity: 0;
+            transition: opacity 0.4s, transform 0.4s;
+        }
+        .modal-content img {
+            max-width: 220px;
+            width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto 1rem auto;
+            border-radius: 10px;
+            box-shadow: 0 2px 12px #ff003c33;
+        }
+        .modal-bg.active .modal-content {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .modal-close {
+            position: absolute;
+            top: 18px;
+            right: 28px;
+            background: none;
+            border: none;
+            color: #ff003c;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Carros</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+            background: linear-gradient(135deg, #181818 0%, #232a34 100%);
+            margin: 0;
+            padding: 0;
+            color: #f1f1f1;
+        }
+        header {
+            background: linear-gradient(90deg, #ff003c 0%, #232a34 100%);
+            color: #fff;
+            text-align: center;
+            padding: 2.5rem 1rem 1.5rem 1rem;
+            box-shadow: 0 4px 16px rgba(255,0,60,0.15);
+        }
+        header h1 {
+            font-size: 2.7rem;
+            letter-spacing: 2px;
+            text-shadow: 0 2px 8px #ff003c99;
+        }
+        .carros {
+            max-width: 1100px;
+            margin: 2.5rem auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+        .carro {
+            background: linear-gradient(135deg, #232a34 60%, #181818 100%);
+            border-radius: 14px;
+            box-shadow: 0 4px 24px rgba(255,0,60,0.10), 0 1.5px 8px #000a;
+            padding: 2rem 1.5rem 1.5rem 1.5rem;
+            text-align: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 2px solid #ff003c44;
+        }
+        .carro:hover {
+            transform: scale(1.04);
+            box-shadow: 0 8px 32px #ff003c55, 0 2px 12px #000c;
+            border-color: #ff003c;
+        }
+        .carro img {
+            width: 100%;
+            max-width: 240px;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 12px #ff003c33;
+        }
+        .especificacoes {
+            text-align: left;
+            margin-top: 1rem;
+            font-size: 1.08rem;
+            background: #181818cc;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 1px 6px #ff003c22;
+        }
+        h2 {
+            margin-bottom: 0.5rem;
+            color: #ff003c;
+            font-size: 1.5rem;
+            text-shadow: 0 1px 6px #ff003c44;
+        }
+        strong {
+            color: #ffae00;
+        }
+        footer {
+            text-align: center;
+            padding: 1.2rem;
+            background: linear-gradient(90deg, #232a34 0%, #ff003c 100%);
+            color: #fff;
+            margin-top: 2.5rem;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            box-shadow: 0 -2px 12px #ff003c33;
+        }
+        @media (max-width: 700px) {
+            .carros {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            .carro {
+                padding: 1.2rem 0.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header style="position:relative;">
+        <div id="search-container" style="position:absolute;top:1.2rem;left:2rem;display:flex;align-items:center;gap:0.5rem;">
+            <input id="search-input" type="text" placeholder="Buscar carro..." style="padding:0.5rem 2.2rem 0.5rem 1rem;border-radius:20px;border:none;font-size:1rem;background:#232a34;color:#fff;width:180px;">
+            <span style="position:absolute;left:160px;top:8px;pointer-events:none;">
+                <svg width="22" height="22" fill="#ff003c" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8" stroke="#ff003c" stroke-width="2" fill="none"/><line x1="21" y1="21" x2="16.65" y2="16.65" stroke="#ff003c" stroke-width="2"/></svg>
+            </span>
+        </div>
+        <div id="avatar-container" style="position:absolute;top:1.2rem;right:2rem;cursor:pointer;">
+            <img id="avatar" src="https://ui-avatars.com/api/?name=Usuário&background=232a34&color=ff003c&size=80" alt="Avatar" style="width:64px;height:64px;border-radius:50%;box-shadow:0 2px 8px #ff003c33;">
+        </div>
+        <h1>Catálogo de Carros</h1>
+        <p>Veja as especificações dos modelos em destaque</p>
+    </header>
+    <section id="login-section" style="display:none;position:absolute;top:90px;right:40px;min-width:220px;max-width:260px;background:#232a34;border-radius:12px;box-shadow:0 2px 12px #ff003c33;padding:1.1rem 1rem 1rem 1rem;text-align:center;z-index:10;">
+        <div style="width:0;height:0;border-left:16px solid transparent;border-right:16px solid transparent;border-bottom:16px solid #232a34;position:absolute;top:-16px;right:32px;"></div>
+        <div id="login-create-toggle" style="margin-bottom:0.7rem;">
+            <button id="show-login" style="background:#ff003c;color:#fff;padding:0.3rem 0.8rem;border:none;border-radius:6px;font-size:0.95rem;cursor:pointer;margin-right:0.5rem;">Login</button>
+            <button id="show-create" style="background:#232a34;color:#ff003c;padding:0.3rem 0.8rem;border:1px solid #ff003c;border-radius:6px;font-size:0.95rem;cursor:pointer;">Criar Conta</button>
+        </div>
+        <div id="login-form-area">
+            <h2 style="color:#ff003c;font-size:1.1rem;margin-bottom:0.7rem;">Login</h2>
+            <form id="login-form">
+                <input type="email" id="email" placeholder="Seu Gmail" required style="width:95%;padding:0.4rem;margin-bottom:0.7rem;border-radius:6px;border:none;font-size:0.95rem;">
+                <input type="password" id="senha" placeholder="Senha" required style="width:95%;padding:0.4rem;margin-bottom:0.7rem;border-radius:6px;border:none;font-size:0.95rem;">
+                <button type="submit" style="background:#ff003c;color:#fff;padding:0.4rem 1.2rem;border:none;border-radius:6px;font-size:0.95rem;cursor:pointer;">Entrar</button>
+            </form>
+        </div>
+        <div id="create-form-area" style="display:none;">
+            <h2 style="color:#ff003c;font-size:1.1rem;margin-bottom:0.7rem;">Criar Conta</h2>
+            <form id="create-form">
+                <input type="email" id="new-email" placeholder="Seu Gmail" required style="width:95%;padding:0.4rem;margin-bottom:0.7rem;border-radius:6px;border:none;font-size:0.95rem;">
+                <input type="password" id="new-senha" placeholder="Senha" required style="width:95%;padding:0.4rem;margin-bottom:0.7rem;border-radius:6px;border:none;font-size:0.95rem;">
+                <button type="submit" style="background:#ff003c;color:#fff;padding:0.4rem 1.2rem;border:none;border-radius:6px;font-size:0.95rem;cursor:pointer;">Criar</button>
+            </form>
+        </div>
+        <div id="usuario-logado" style="margin-top:1rem;font-size:1rem;color:#ffae00;"></div>
+    </section>
+    <section class="carros" id="carros-list">
+        <!-- Modal para detalhes do carro -->
+        <div id="modal-bg" class="modal-bg">
+            <div class="modal-content" id="modal-content">
+                <button class="modal-close" id="modal-close">&times;</button>
+                <div id="modal-body"></div>
+            </div>
+        </div>
+        <a class="carro" href="toyota-supra.html">
+            <img src="https://di-enrollment-api.s3.amazonaws.com/toyota/models/2022/GR+Supra/colors/ABSOLUTE+ZERO%E2%80%94A91-CF+EDITION.jpg" alt="Toyota Supra">
+            <h2>Toyota Supra</h2>
+            <div class="especificacoes">
+                <strong>Marca:</strong> Toyota<br>
+                <strong>Ano:</strong> 2022<br>
+                <strong>Motor:</strong> 3,0L de 6 cilindros<br>
+                <strong>Potência:</strong> 340 cv<br>
+                <strong>0-100 km/h:</strong> 4,5 s<br>
+                <strong>Preço:</strong> R$ 630.000
+            </div>
+        </a>
+        <a class="carro" href="honda-civic-type-r.html">
+            <img src="https://www.honda.com.br/automoveis/sites/hab/files/2023-05/01_Honda_Civic_Type-R_Frente_Lateral_Blue_Pearl.png" alt="Honda Civic Type R">
+            <h2>Honda Civic Type R</h2>
+            <div class="especificacoes">
+                <strong>Marca:</strong> Honda<br>
+                <strong>Ano:</strong> 2023<br>
+                <strong>Motor:</strong> 2.0L 4 cilindros turbo<br>
+                <strong>Potência:</strong> 297 cv a 6.500 rpm<br>
+                <strong>Torque:</strong> 420 Nm a 2.600-4.000 rpm<br>
+                <strong>0-100 km/h:</strong> 5,4 s<br>
+                <strong>Preço:</strong> R$ 329.900
+            </div>
+        </a>
+        <a class="carro" href="subaru-wrx.html">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a6/Subaru_WRX_STI_-_Blue_%28cropped%29.jpg" alt="Subaru WRX STI">
+            <h2>Subaru WRX STI</h2>
+            <div class="especificacoes">
+                <strong>Marca:</strong> Subaru<br>
+                <strong>Ano:</strong> 2021<br>
+                <strong>Motor:</strong> Boxer 2,5 L turbo<br>
+                <strong>Potência:</strong> 310 cv a 6.000 rpm<br>
+                <strong>Torque:</strong> ~41,5 kgf·m<br>
+                <strong>0-100 km/h:</strong> 5,2 s<br>
+                <strong>Preço:</strong> R$ 308.900
+            </div>
+        </a>
+        <a class="carro" href="volvo-s60.html">
+            <img src="https://revistacarro.com.br/wp-content/uploads/2019/12/Volvo-S60-Polestar_3.jpg" alt="Volvo S60 Polestar Engineered">
+            <h2>Volvo S60 Polestar Engineered</h2>
+            <div class="especificacoes">
+                <strong>Marca:</strong> Volvo<br>
+                <strong>Ano:</strong> 2022<br>
+                <strong>Motor:</strong> 2.0L híbrido (turbo + supercharger + elétrico)<br>
+                <strong>Potência:</strong> 421 cv<br>
+                <strong>Torque:</strong> 670 Nm (68,3 kgfm)<br>
+                <strong>0-100 km/h:</strong> 4,3 s<br>
+                <strong>Preço:</strong> R$ 399.950
+            </div>
+        </a>
+        <a class="carro" href="kia-stinger.html">
+            <img src="https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=400&q=80" alt="Kia Stinger GT">
+            <h2>Kia Stinger GT</h2>
+            <div class="especificacoes">
+                <strong>Marca:</strong> Kia<br>
+                <strong>Ano:</strong> 2021/2022<br>
+                <strong>Motor:</strong> V6 3.3L biturbo<br>
+                <strong>Potência:</strong> 366 cv a 6.000 rpm<br>
+                <strong>Torque:</strong> 52 kgfm (510 Nm) a 1.300-4.500 rpm<br>
+                <strong>0-100 km/h:</strong> 4,9 s<br>
+                <strong>Preço:</strong> R$ 399.990
+            </div>
+        </a>
+        <a class="carro" href="mazda-mx5.html">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSiMMELPCw3z6oZVe-LSy1uWlq0wnavUBWng&s" alt="Mazda MX-5">
+            <h2>Mazda MX-5</h2>
+            <div class="especificacoes">
+                <strong>Marca:</strong> Mazda<br>
+                <strong>Ano:</strong> 2023<br>
+                <strong>Motor:</strong> 2.0L 4 cilindros aspirado<br>
+                <strong>Potência:</strong> 181 cv a 7.000 rpm<br>
+                <strong>Torque:</strong> 20,9 kgfm (205 Nm) a 4.000 rpm<br>
+                <strong>0-100 km/h:</strong> 6,9 s<br>
+                <strong>Preço:</strong> R$ 229.990
+            </div>
+        </a>
+        <a class="carro" href="peugeot-208-gt.html">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQS4Lfra_MHsnOwzzifXs5WpuWtfgRW4KN1Gg&s" alt="Lamborghini Huracán EVO">
+            <h2>Lamborghini Huracán EVO</h2>
+            <div class="especificacoes">
+                <strong>Marca:</strong> Lamborghini<br>
+                <strong>Ano:</strong> 2023<br>
+                <strong>Motor:</strong> 5.2L V10 aspirado<br>
+                <strong>Potência:</strong> 640 cv a 8.000 rpm<br>
+                <strong>Torque:</strong> 600 Nm (61,2 kgfm) a 6.500 rpm<br>
+                <strong>0-100 km/h:</strong> 2,9 s<br>
+                <strong>Preço:</strong> R$ 3.500.000
+            </div>
+        </a>
+        <a class="carro" href="renault-megane-rs.html">
+            <img src="https://cdn.motor1.com/images/mgl/AkKYmx/s1/renault-megane-r.s.-ultime-2023.jpg" alt="Renault Megane RS">
+            <h2>Renault Megane RS</h2>
+            <div class="especificacoes">
+                <strong>Marca:</strong> Renault<br>
+                <strong>Ano:</strong> 2021<br>
+                <strong>Motor:</strong> 1.8L turbo 4 cilindros<br>
+                <strong>Potência:</strong> 300 cv a 6.000 rpm<br>
+                <strong>Torque:</strong> 42,8 kgfm (420 Nm) a 3.200 rpm<br>
+                <strong>0-100 km/h:</strong> 5,8 s<br>
+                <strong>Preço:</strong> R$ 279.990
+            </div>
+        </a>
+        <a class="carro" href="fiat-toro.html">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgY8I5tFDWeBmNKtBrA_4CTshImXNqkDc3MA&s" alt="Fiat Toro Ranch">
+            <h2>Fiat Toro Ranch</h2>
+            <div class="especificacoes">
+                <strong>Marca:</strong> Fiat<br>
+                <strong>Ano:</strong> 2023<br>
+                <strong>Motor:</strong> 2.0L turbo diesel 4 cilindros<br>
+                <strong>Potência:</strong> 170 cv a 3.750 rpm<br>
+                <strong>Torque:</strong> 35,7 kgfm (357 Nm) a 1.750 rpm<br>
+                <strong>0-100 km/h:</strong> 10,7 s<br>
+                <strong>Preço:</strong> R$ 210.990
+            </div>
+        </a>
+        </a>
+        <a class="carro" href="jeep-compass.html">
+            <img src="https://www.media.stellantis.com/cache/5/d/5/d/8/5d5d8e30dbabca4b0fe73ee60f40af0f569dc0d3.jpeg" alt="Jeep Compass Limited">
+            <h2>Jeep Compass Limited</h2>
+            <div class="especificacoes">
+                <strong>Marca:</strong> Jeep<br>
+                <strong>Ano:</strong> 2022<br>
+                <strong>Motor:</strong> 1.3L turbo flex 4 cilindros<br>
+                <strong>Potência:</strong> 185 cv a 5.750 rpm<br>
+                <strong>Torque:</strong> 27,5 kgfm (270 Nm) a 1.750 rpm<br>
+                <strong>0-100 km/h:</strong> 9,2 s<br>
+                <strong>Preço:</strong> R$ 193.990
+            </div>
+        </a>
+        <a class="carro" href="mustang.html">
+            <img src="https://image1.mobiauto.com.br/images/api/images/v1.0/285030922/transform/fl_progressive,f_webp,q_80" alt="Ford Mustang GT">
+            <h2>Ford Mustang GT</h2>
+            <div class="especificacoes">
+                <strong>Marca:</strong> Ford<br>
+                <strong>Ano:</strong> 2022<br>
+                    <strong>Motor:</strong> V8 5.0L aspirado<br>
+                    <strong>Potência:</strong> 466 cv a 7.000 rpm<br>
+                    <strong>Torque:</strong> 56,7 kgfm (556 Nm) a 4.600 rpm<br>
+                    <strong>0-100 km/h:</strong> 4,3 s<br>
+                    <strong>Preço:</strong> R$ 529.990
+                </div>
+        </a>
+        <a class="carro" href="camaro.html">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5tjG1zKVw67FECW1i9DuLsT2m9-mWIW8gIg&s" alt="Chevrolet Camaro SS">
+            <h2>Chevrolet Camaro SS</h2>
+            <div class="especificacoes">
+                <strong>Marca:</strong> Chevrolet<br>
+                <strong>Ano:</strong> 2021<br>
+                <strong>Motor:</strong> V8 6.2L aspirado<br>
+                <strong>Potência:</strong> 461 cv a 6.000 rpm<br>
+                <strong>Torque:</strong> 62,9 kgfm (617 Nm) a 4.400 rpm<br>
+                <strong>0-100 km/h:</strong> 4,2 s<br>
+                <strong>Preço:</strong> R$ 529.990
+            </div>
+        </a>
+        <a class="carro" href="bmw.html">
+            <img src="https://cdn.motor1.com/images/mgl/1ZQrxK/s3/2023-bmw-m3-cs-first-drive-review.jpg" alt="BMW M3">
+            <h2>BMW M3</h2>
+            <div class="especificacoes">
+                <strong>Marca:</strong> BMW<br>
+                <strong>Ano:</strong> 2023<br>
+                <strong>Motor:</strong> 3.0L 6 cilindros biturbo<br>
+                <strong>Potência:</strong> 510 cv a 6.250 rpm<br>
+                <strong>Torque:</strong> 66,3 kgfm (650 Nm) a 2.750-5.500 rpm<br>
+                <strong>0-100 km/h:</strong> 3,9 s<br>
+                <strong>Preço:</strong> R$ 769.950
+            </div>
+        </a>
+        <a class="carro" href="audi-rs7.html">
+            <img src="https://hips.hearstapps.com/hmg-prod/images/img-1484-jpg-649644d3c1386.jpg?crop=0.571xw:0.762xh;0.240xw,0.195xh&resize=1200:*" alt="Audi RS7">
+            <h2>Audi RS7</h2>
+            <div class="especificacoes">
+                <strong>Marca:</strong> Audi<br>
+                <strong>Ano:</strong> 2022<br>
+                <strong>Motor:</strong> V8 4.0L biturbo<br>
+                <strong>Potência:</strong> 600 cv a 6.000-6.250 rpm<br>
+                <strong>Torque:</strong> 81,6 kgfm (800 Nm) a 2.050-4.500 rpm<br>
+                <strong>0-100 km/h:</strong> 3,6 s<br>
+                <strong>Preço:</strong> R$ 1.079.990
+            </div>
+        </a>
+        <a class="carro" href="mercedes-amg-gt.html">
+            <img src="https://www.bloomberglinea.com.br/resizer/o_ZzbVlSfenYljGAMfc6Hza6Jus=/arc-photo-bloomberglinea/arc2-prod/public/RI6O6I6CVBCSNCQ2I6ZGFHHPGA.jpg" alt="Mercedes AMG GT">
+            <h2>Mercedes AMG GT</h2>
+            <div class="especificacoes">
+                <strong>Marca:</strong> Mercedes-Benz<br>
+                <strong>Ano:</strong> 2021<br>
+                <strong>Motor:</strong> V8 4.0L biturbo<br>
+                <strong>Potência:</strong> 585 cv a 6.250 rpm<br>
+                <strong>Torque:</strong> 71,4 kgfm (700 Nm) a 2.500-5.500 rpm<br>
+                <strong>0-100 km/h:</strong> 3,8 s<br>
+                <strong>Preço:</strong> R$ 1.299.900
+            </div>
+        </a>
+        <a class="carro" href="ferrari-f8.html">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSn0CnujUoUx-ohjWKEUudXl7xTuTco-4wLaQ&s" alt="Ferrari F8 Tributo">
+            <h2>Ferrari F8 Tributo</h2>
+            <div class="especificacoes">
+                <strong>Marca:</strong> Ferrari<br>
+                <strong>Ano:</strong> 2022<br>
+                <strong>Motor:</strong> V8 3.9L biturbo<br>
+                <strong>Potência:</strong> 720 cv a 7.000 rpm<br>
+                <strong>Torque:</strong> 770 Nm a 3.250 rpm<br>
+                <strong>0-100 km/h:</strong> 2,9 s<br>
+                <strong>Preço:</strong> R$ 3.200.000
+            </div>
+        </a>
+            <a class="carro" href="bugatti-chiron.html">
+                <img src="https://cdn.motor1.com/images/mgl/0ANJb/s1/bugatti-chiron.jpg" alt="Bugatti Chiron">
+                <h2>Bugatti Chiron</h2>
+                <div class="especificacoes">
+                    <strong>Marca:</strong> Bugatti<br>
+                    <strong>Ano:</strong> 2022<br>
+                    <strong>Motor:</strong> 8.0L W16 quadriturbo<br>
+                    <strong>Potência:</strong> 1.500 cv<br>
+                    <strong>Torque:</strong> 1.600 Nm<br>
+                    <strong>0-100 km/h:</strong> 2,4 s<br>
+                    <strong>Preço:</strong> R$ 25.000.000
+                </div>
+            </a>
+    </section>
+    <footer>
+        <p>&copy; 2025 Catálogo de Carros. Todos os direitos reservados.</p>
+    </footer>
+    <script>
+    // Definições de elementos
+    const carrosList = document.getElementById('carros-list');
+    const modalBg = document.getElementById('modal-bg');
+    const modalContent = document.getElementById('modal-content');
+    const modalBody = document.getElementById('modal-body');
+    const modalClose = document.getElementById('modal-close');
+    const searchInput = document.getElementById('search-input');
+    const avatarContainer = document.getElementById('avatar-container');
+    const loginSection = document.getElementById('login-section');
+    const loginFormArea = document.getElementById('login-form-area');
+    const createFormArea = document.getElementById('create-form-area');
+    const showLoginBtn = document.getElementById('show-login');
+    const showCreateBtn = document.getElementById('show-create');
+    const loginForm = document.getElementById('login-form');
+    const createForm = document.getElementById('create-form');
+    const usuarioLogado = document.getElementById('usuario-logado');
+
+    // Modal de detalhes do carro
+    carrosList.querySelectorAll('.carro').forEach(card => {
+        card.addEventListener('click', function(e) {
+            e.preventDefault();
+            // Pega conteúdo do card
+            const img = card.querySelector('img').outerHTML;
+            const titleText = card.querySelector('h2').textContent;
+            const href = card.getAttribute('href');
+            const titleLink = `<a href='${href}' style='color:#ff003c;text-decoration:underline;font-size:1.3rem;font-weight:bold;'>${titleText}</a>`;
+            const specs = card.querySelector('.especificacoes').outerHTML;
+            modalBody.innerHTML = `${img}${titleLink}${specs}`;
+            modalBg.classList.add('active');
+        });
+    });
+    modalClose.addEventListener('click', function() {
+        modalBg.classList.remove('active');
+    });
+    modalBg.addEventListener('click', function(e) {
+        if (e.target === modalBg) modalBg.classList.remove('active');
+    });
+
+    // Busca de carros
+    searchInput.addEventListener('input', function() {
+        const termo = searchInput.value.toLowerCase();
+        const cards = carrosList.querySelectorAll('.carro');
+        cards.forEach(card => {
+            const nome = card.querySelector('h2').textContent.toLowerCase();
+            if (nome.includes(termo)) {
+                card.style.display = '';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    });
+
+    // Mostrar login ao clicar no avatar
+    avatarContainer.addEventListener('click', function() {
+        loginSection.style.display = 'block';
+        window.scrollTo({top: loginSection.offsetTop, behavior: 'smooth'});
+    });
+    showLoginBtn.addEventListener('click', function() {
+        loginFormArea.style.display = 'block';
+        createFormArea.style.display = 'none';
+        showLoginBtn.style.background = '#ff003c';
+        showLoginBtn.style.color = '#fff';
+        showCreateBtn.style.background = '#232a34';
+        showCreateBtn.style.color = '#ff003c';
+    });
+    showCreateBtn.addEventListener('click', function() {
+        loginFormArea.style.display = 'none';
+        createFormArea.style.display = 'block';
+        showCreateBtn.style.background = '#ff003c';
+        showCreateBtn.style.color = '#fff';
+        showLoginBtn.style.background = '#232a34';
+        showLoginBtn.style.color = '#ff003c';
+    });
+    loginForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const email = document.getElementById('email').value;
+        usuarioLogado.textContent = `Usuário logado: ${email}`;
+        loginForm.style.display = 'none';
+        createFormArea.style.display = 'none';
+        // Atualiza avatar com nome
+        document.getElementById('avatar').src = `https://ui-avatars.com/api/?name=${encodeURIComponent(email.split('@')[0])}&background=232a34&color=ff003c&size=80`;
+    });
+    createForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const email = document.getElementById('new-email').value;
+        usuarioLogado.textContent = `Conta criada e logado: ${email}`;
+        createForm.style.display = 'none';
+        loginFormArea.style.display = 'none';
+        // Atualiza avatar com nome
+        document.getElementById('avatar').src = `https://ui-avatars.com/api/?name=${encodeURIComponent(email.split('@')[0])}&background=232a34&color=ff003c&size=80`;
+    });
+    </script>
