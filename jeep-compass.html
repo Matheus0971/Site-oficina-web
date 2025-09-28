@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeep Compass Limited - Especificações</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #181818 0%, #232a34 100%);
+            color: #f1f1f1;
+            font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+            margin: 0;
+        }
+        .container {
+            max-width: 700px;
+            margin: 3rem auto;
+            background: #232a34;
+            border-radius: 18px;
+            box-shadow: 0 8px 32px #ff003c33;
+            padding: 2.5rem 2rem 2rem 2rem;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .header img {
+            height: 38px;
+            width: auto;
+        }
+        .header h1 {
+            color: #ff003c;
+            font-size: 2.1rem;
+            margin: 0;
+            text-shadow: 0 2px 8px #ff003c99;
+        }
+        .main-content {
+            display: flex;
+            gap: 2.5rem;
+            flex-wrap: wrap;
+            align-items: flex-start;
+        }
+        .car-img {
+            flex: 1 1 220px;
+            max-width: 320px;
+            min-width: 180px;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px #ff003c33;
+            background: #181818;
+            padding: 0.5rem;
+        }
+        .specs {
+            flex: 2 1 320px;
+            background: #181818cc;
+            padding: 1.5rem 1.2rem;
+            border-radius: 12px;
+            font-size: 1.13rem;
+            box-shadow: 0 1px 8px #ff003c22;
+        }
+        .spec-row {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            margin-bottom: 0.7rem;
+        }
+        .spec-row strong {
+            color: #ffae00;
+            min-width: 110px;
+        }
+        .spec-row img.icon {
+            height: 22px;
+            width: 22px;
+            vertical-align: middle;
+            margin-right: 0.3rem;
+        }
+        .back-btn {
+            display: inline-block;
+            margin-top: 2.2rem;
+            background: #ff003c;
+            color: #fff;
+            padding: 0.5rem 1.3rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 2px 8px #ff003c33;
+            transition: background 0.2s;
+        }
+        .back-btn:hover {
+            background: #d90032;
+        }
+        @media (max-width: 700px) {
+            .main-content {
+                flex-direction: column;
+                gap: 1.2rem;
+            }
+            .container {
+                padding: 1.2rem 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Jeep_logo.png" alt="Jeep">
+                <img src="https://i.pinimg.com/736x/df/4a/1f/df4a1fc5a0a36482d463403d18962138.jpg" alt="Símbolo Jeep" style="height:38px;width:auto;">
+            <h1>Jeep Compass Limited</h1>
+        </div>
+        <div class="main-content">
+            <img class="car-img" src="https://www.media.stellantis.com/cache/5/d/5/d/8/5d5d8e30dbabca4b0fe73ee60f40af0f569dc0d3.jpeg" alt="Jeep Compass Limited">
+            <div class="specs">
+                <div class="spec-row"><img class="icon" src="https://cdn-icons-png.flaticon.com/512/69/69524.png" alt="Ano"><strong>Ano:</strong> 2022</div>
+                <div class="spec-row"><img class="icon" src="https://cdn-icons-png.flaticon.com/512/1048/1048311.png" alt="Motor"><strong>Motor:</strong> 1.3L turbo flex 4 cilindros</div>
+                <div class="spec-row"><img class="icon" src="https://cdn-icons-png.flaticon.com/512/3208/3208720.png" alt="Potência"><strong>Potência:</strong> 185 cv a 5.750 rpm</div>
+                <div class="spec-row"><img class="icon" src="https://cdn-icons-png.flaticon.com/512/1048/1048311.png" alt="Torque"><strong>Torque:</strong> 27,5 kgfm (270 Nm) a 1.750 rpm</div>
+                <div class="spec-row"><img class="icon" src="https://cdn-icons-png.flaticon.com/512/1048/1048311.png" alt="0-100"><strong>0-100 km/h:</strong> 9,2 s</div>
+                <div class="spec-row"><img class="icon" src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Preço"><strong>Preço:</strong> R$ 193.990</div>
+                <div class="spec-row"><img class="icon" src="https://cdn-icons-png.flaticon.com/512/1048/1048311.png" alt="Transmissão"><strong>Transmissão:</strong> Automática</div>
+                <div class="spec-row"><img class="icon" src="https://cdn-icons-png.flaticon.com/512/1048/1048311.png" alt="Combustível"><strong>Combustível:</strong> Flex</div>
+            </div>
+            </div>
+        </div>
+        <a class="back-btn" href="Untitled-2.html">Voltar ao catálogo</a>
+    </div>
+</body>
+</html>

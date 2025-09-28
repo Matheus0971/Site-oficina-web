@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Honda Civic Type R - Especificações</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #181818 0%, #232a34 100%);
+            color: #f1f1f1;
+            font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+            margin: 0;
+        }
+        .container {
+            max-width: 700px;
+            margin: 3rem auto;
+            background: #232a34;
+            border-radius: 18px;
+            box-shadow: 0 8px 32px #ff003c33;
+            padding: 2.5rem 2rem 2rem 2rem;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .header img {
+            height: 38px;
+            width: auto;
+        }
+        .header h1 {
+            color: #ff003c;
+            font-size: 2.1rem;
+            margin: 0;
+            text-shadow: 0 2px 8px #ff003c99;
+        }
+        .main-content {
+            display: flex;
+            gap: 2.5rem;
+            flex-wrap: wrap;
+            align-items: flex-start;
+        }
+        .car-img {
+            flex: 1 1 220px;
+            max-width: 320px;
+            min-width: 180px;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px #ff003c33;
+            background: #181818;
+            padding: 0.5rem;
+        }
+        .specs {
+            flex: 2 1 320px;
+            background: #181818cc;
+            padding: 1.5rem 1.2rem;
+            border-radius: 12px;
+            font-size: 1.13rem;
+            box-shadow: 0 1px 8px #ff003c22;
+        }
+        .spec-row {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            margin-bottom: 0.7rem;
+        }
+        .spec-row strong {
+            color: #ffae00;
+            min-width: 110px;
+        }
+        .back-btn {
+            display: inline-block;
+            margin-top: 2.2rem;
+            background: #ff003c;
+            color: #fff;
+            padding: 0.5rem 1.3rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 2px 8px #ff003c33;
+            transition: background 0.2s;
+        }
+        .back-btn:hover {
+            background: #d90032;
+        }
+        @media (max-width: 700px) {
+            .main-content {
+                flex-direction: column;
+                gap: 1.2rem;
+            }
+            .container {
+                padding: 1.2rem 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Honda_Logo.svg" alt="Símbolo Honda" style="height:38px;width:auto;">
+            <h1>Honda Civic Type R</h1>
+        </div>
+        <div class="main-content">
+            <img class="car-img" src="https://www.honda.com.br/automoveis/sites/hab/files/2023-05/01_Honda_Civic_Type-R_Frente_Lateral_Blue_Pearl.png" alt="Honda Civic Type R">
+            <div class="specs">
+                <div class="spec-row">📅 <strong>Ano:</strong> 2023</div>
+                <div class="spec-row">🛠️ <strong>Motor:</strong> 2.0L 4 cilindros turbo</div>
+                <div class="spec-row">💨 <strong>0-100 km/h:</strong> 5,4 s</div>
+                <div class="spec-row">⚙️ <strong>Transmissão:</strong> Manual de 6 velocidades</div>
+                <div class="spec-row">⛽ <strong>Combustível:</strong> Gasolina</div>
+                <div class="spec-row">🌀 <strong>Potência:</strong> 297 cv a 6.500 rpm</div>
+                <div class="spec-row">🌀 <strong>Torque:</strong> 420 Nm a 2.600-4.000 rpm</div>
+                <div class="spec-row">💰 <strong>Preço:</strong> R$ 329.900</div>
+                <div style="margin:1.2rem 0 0.5rem 0;padding:1rem;background:#232a34;border-radius:10px;box-shadow:0 1px 6px #ff003c22;">
+                    <strong style="color:#ffae00;font-size:1.08rem;">Formas de Pagamento:</strong><br>
+                    <select id="pagamento-select" style="margin-top:0.7rem;padding:0.4rem 0.7rem;border-radius:6px;background:#181818;color:#fff;font-size:1rem;">
+                        <option value="Cartão de crédito">Cartão de crédito</option>
+                        <option value="Pix">Pix</option>
+                        <option value="Boleto">Boleto</option>
+                    </select>
+                    <div style="margin-top:0.7rem;font-size:1rem;color:#fff;">
+                        <span style="color:#ffae00;">Parcelamento:</span>
+                        <select id="parcelamento-select" style="margin-left:0.5rem;padding:0.4rem 0.7rem;border-radius:6px;background:#181818;color:#fff;font-size:1rem;">
+                            <option value="1x">À vista</option>
+                            <option value="6x">6x no cartão</option>
+                            <option value="12x">12x no cartão</option>
+                            <option value="24x">24x no cartão</option>
+                        </select>
+                    </div>
+                    <div id="resultado-pagamento" style="margin-top:1rem;color:#ffae00;font-size:1.05rem;"></div>
+                    <script>
+                        const pagamentoSelect = document.getElementById('pagamento-select');
+                        const parcelamentoSelect = document.getElementById('parcelamento-select');
+                        const resultadoPagamento = document.getElementById('resultado-pagamento');
+                        function atualizarResultado() {
+                            resultadoPagamento.textContent = `Forma de pagamento: ${pagamentoSelect.value} | Parcelamento: ${parcelamentoSelect.value}`;
+                        }
+                        pagamentoSelect.addEventListener('change', atualizarResultado);
+                        parcelamentoSelect.addEventListener('change', atualizarResultado);
+                        atualizarResultado();
+                    </script>
+                </div>
+            </div>
+        </div>
+        <a class="back-btn" href="Untitled-2.html">Voltar ao catálogo</a>
+    </div>
+</body>
+</html>

@@ -151,6 +151,33 @@
             <span style="position:absolute;left:160px;top:8px;pointer-events:none;">
                 <svg width="22" height="22" fill="#ff003c" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8" stroke="#ff003c" stroke-width="2" fill="none"/><line x1="21" y1="21" x2="16.65" y2="16.65" stroke="#ff003c" stroke-width="2"/></svg>
             </span>
+            <select id="marca-filter" style="margin-left:1rem;padding:0.4rem 1rem;border-radius:12px;background:#232a34;color:#fff;border:1px solid #ff003c;">
+                <option value="">Todas as marcas</option>
+                <option value="Toyota">Toyota</option>
+                <option value="Honda">Honda</option>
+                <option value="Subaru">Subaru</option>
+                <option value="Volvo">Volvo</option>
+                <option value="Kia">Kia</option>
+                <option value="Mazda">Mazda</option>
+                <option value="Lamborghini">Lamborghini</option>
+                <option value="Renault">Renault</option>
+                <option value="Fiat">Fiat</option>
+                <option value="Jeep">Jeep</option>
+                <option value="Ford">Ford</option>
+                <option value="Chevrolet">Chevrolet</option>
+                <option value="BMW">BMW</option>
+                <option value="Audi">Audi</option>
+                <option value="Mercedes-Benz">Mercedes-Benz</option>
+                <option value="Ferrari">Ferrari</option>
+                <option value="Bugatti">Bugatti</option>
+            </select>
+            <select id="velocidade-filter" style="margin-left:1rem;padding:0.4rem 1rem;border-radius:12px;background:#232a34;color:#fff;border:1px solid #ff003c;">
+                <option value="">Todas as velocidades</option>
+                <option value="250">Até 250 km/h</option>
+                <option value="300">Até 300 km/h</option>
+                <option value="350">Até 350 km/h</option>
+                <option value="400">Acima de 350 km/h</option>
+            </select>
         </div>
         <div id="avatar-container" style="position:absolute;top:1.2rem;right:2rem;cursor:pointer;">
             <img id="avatar" src="https://ui-avatars.com/api/?name=Usuário&background=232a34&color=ff003c&size=80" alt="Avatar" style="width:64px;height:64px;border-radius:50%;box-shadow:0 2px 8px #ff003c33;">
@@ -192,6 +219,7 @@
         </div>
         <a class="carro" href="toyota-supra.html">
             <img src="https://di-enrollment-api.s3.amazonaws.com/toyota/models/2022/GR+Supra/colors/ABSOLUTE+ZERO%E2%80%94A91-CF+EDITION.jpg" alt="Toyota Supra">
+            <img src="https://media.toyota.com.ar/696c13db-6d58-4897-aff3-5f874c67a090.png" alt="Símbolo Toyota" style="height:38px;width:auto;margin-bottom:0.7rem;">
             <h2>Toyota Supra</h2>
             <div class="especificacoes">
                 <strong>Marca:</strong> Toyota<br>
@@ -204,6 +232,7 @@
         </a>
         <a class="carro" href="honda-civic-type-r.html">
             <img src="https://www.honda.com.br/automoveis/sites/hab/files/2023-05/01_Honda_Civic_Type-R_Frente_Lateral_Blue_Pearl.png" alt="Honda Civic Type R">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Honda_Logo.svg" alt="Símbolo Honda" style="height:38px;width:auto;margin-bottom:0.7rem;">
             <h2>Honda Civic Type R</h2>
             <div class="especificacoes">
                 <strong>Marca:</strong> Honda<br>
@@ -217,6 +246,7 @@
         </a>
         <a class="carro" href="subaru-wrx.html">
             <img src="https://upload.wikimedia.org/wikipedia/commons/a/a6/Subaru_WRX_STI_-_Blue_%28cropped%29.jpg" alt="Subaru WRX STI">
+            <img src="https://turbologo.com/articles/wp-content/uploads/2019/12/Subaru-logo-symbol.png" alt="Símbolo Subaru" style="height:38px;width:auto;margin-bottom:0.7rem;">
             <h2>Subaru WRX STI</h2>
             <div class="especificacoes">
                 <strong>Marca:</strong> Subaru<br>
@@ -230,6 +260,7 @@
         </a>
         <a class="carro" href="volvo-s60.html">
             <img src="https://revistacarro.com.br/wp-content/uploads/2019/12/Volvo-S60-Polestar_3.jpg" alt="Volvo S60 Polestar Engineered">
+            <br><img src="https://static.dezeen.com/uploads/2021/09/volvo_flat_logo_design_transport_dezeen_2364_col_sq_4-852x852.jpg" alt="Símbolo Volvo" style="height:38px;width:auto;margin-bottom:0.7rem;">
             <h2>Volvo S60 Polestar Engineered</h2>
             <div class="especificacoes">
                 <strong>Marca:</strong> Volvo<br>
@@ -243,6 +274,7 @@
         </a>
         <a class="carro" href="kia-stinger.html">
             <img src="https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=400&q=80" alt="Kia Stinger GT">
+            <img src="https://quatrorodas.abril.com.br/wp-content/uploads/2022/11/de-cara-nova-kia-burger-king-e-ate-cia-criam-_novos-_logos-kia-anterior.webp?quality=70&w=720&crop=1" alt="Símbolo Kia" style="height:38px;width:auto;margin-bottom:0.7rem;">
             <h2>Kia Stinger GT</h2>
             <div class="especificacoes">
                 <strong>Marca:</strong> Kia<br>
@@ -256,6 +288,7 @@
         </a>
         <a class="carro" href="mazda-mx5.html">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSiMMELPCw3z6oZVe-LSy1uWlq0wnavUBWng&s" alt="Mazda MX-5">
+            <img src="https://w7.pngwing.com/pngs/333/560/png-transparent-mazda3-car-mazda-bt-50-mazda-cx-9-cars-logo-brands-emblem-logo-car.png" alt="Símbolo Mazda" style="height:38px;width:auto;margin-bottom:0.7rem;">
             <h2>Mazda MX-5</h2>
             <div class="especificacoes">
                 <strong>Marca:</strong> Mazda<br>
@@ -267,8 +300,9 @@
                 <strong>Preço:</strong> R$ 229.990
             </div>
         </a>
-        <a class="carro" href="peugeot-208-gt.html">
+    <a class="carro" href="lamborghini-huracan-evo.html">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQS4Lfra_MHsnOwzzifXs5WpuWtfgRW4KN1Gg&s" alt="Lamborghini Huracán EVO">
+            <br><img src="https://bandalheira.cdn.magazord.com.br/img/2022/05/produto/6760/plc-0508-placa-decorativa-lamborghini-logo-2.jpg?ims=fit-in/1200x1200" alt="Símbolo Lamborghini" style="height:38px;width:auto;margin-bottom:0.7rem;">
             <h2>Lamborghini Huracán EVO</h2>
             <div class="especificacoes">
                 <strong>Marca:</strong> Lamborghini<br>
@@ -282,6 +316,7 @@
         </a>
         <a class="carro" href="renault-megane-rs.html">
             <img src="https://cdn.motor1.com/images/mgl/AkKYmx/s1/renault-megane-r.s.-ultime-2023.jpg" alt="Renault Megane RS">
+            <br><img src="https://images.tcdn.com.br/img/img_prod/659062/emblema_grade_dianteira_renault_sandero_2015_2016_2017_2018_2019_21913_2_20230522134646.jpg" alt="Símbolo Renault" style="height:38px;width:auto;margin-bottom:0.7rem;">
             <h2>Renault Megane RS</h2>
             <div class="especificacoes">
                 <strong>Marca:</strong> Renault<br>
@@ -295,6 +330,7 @@
         </a>
         <a class="carro" href="fiat-toro.html">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgY8I5tFDWeBmNKtBrA_4CTshImXNqkDc3MA&s" alt="Fiat Toro Ranch">
+            <img src="https://blog.deltafiat.com.br/wp-content/uploads/2023/12/Fiat-Logo-2020-presente-650x366.jpg.webp" alt="Símbolo Fiat" style="height:38px;width:auto;margin-bottom:0.7rem;">
             <h2>Fiat Toro Ranch</h2>
             <div class="especificacoes">
                 <strong>Marca:</strong> Fiat<br>
@@ -309,6 +345,7 @@
         </a>
         <a class="carro" href="jeep-compass.html">
             <img src="https://www.media.stellantis.com/cache/5/d/5/d/8/5d5d8e30dbabca4b0fe73ee60f40af0f569dc0d3.jpeg" alt="Jeep Compass Limited">
+            <img src="https://i.pinimg.com/736x/df/4a/1f/df4a1fc5a0a36482d463403d18962138.jpg" alt="Símbolo Jeep" style="height:38px;width:auto;margin-bottom:0.7rem;">
             <h2>Jeep Compass Limited</h2>
             <div class="especificacoes">
                 <strong>Marca:</strong> Jeep<br>
@@ -322,6 +359,7 @@
         </a>
         <a class="carro" href="mustang.html">
             <img src="https://image1.mobiauto.com.br/images/api/images/v1.0/285030922/transform/fl_progressive,f_webp,q_80" alt="Ford Mustang GT">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTugkBmCLF_giILpgSWeZ8t2DzdL7rNmT4s7w&s" alt="Símbolo Ford" style="height:38px;width:auto;margin-bottom:0.7rem;">
             <h2>Ford Mustang GT</h2>
             <div class="especificacoes">
                 <strong>Marca:</strong> Ford<br>
@@ -335,6 +373,7 @@
         </a>
         <a class="carro" href="camaro.html">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5tjG1zKVw67FECW1i9DuLsT2m9-mWIW8gIg&s" alt="Chevrolet Camaro SS">
+            <img src="https://assets.turbologo.com/blog/en/2021/11/18085359/chevy-symbol.png" alt="Símbolo Chevrolet" style="height:38px;width:auto;margin-bottom:0.7rem;">
             <h2>Chevrolet Camaro SS</h2>
             <div class="especificacoes">
                 <strong>Marca:</strong> Chevrolet<br>
@@ -348,6 +387,7 @@
         </a>
         <a class="carro" href="bmw.html">
             <img src="https://cdn.motor1.com/images/mgl/1ZQrxK/s3/2023-bmw-m3-cs-first-drive-review.jpg" alt="BMW M3">
+            <img src="https://w7.pngwing.com/pngs/538/981/png-transparent-bmw-logo-bmw-car-logo-bmw-logo-trademark-logo-graphics.png" alt="Símbolo BMW" style="height:38px;width:auto;margin-bottom:0.7rem;">
             <h2>BMW M3</h2>
             <div class="especificacoes">
                 <strong>Marca:</strong> BMW<br>
@@ -361,6 +401,7 @@
         </a>
         <a class="carro" href="audi-rs7.html">
             <img src="https://hips.hearstapps.com/hmg-prod/images/img-1484-jpg-649644d3c1386.jpg?crop=0.571xw:0.762xh;0.240xw,0.195xh&resize=1200:*" alt="Audi RS7">
+            <img src="https://hcdfbaul.wordpress.com/wp-content/uploads/2013/12/audi_new-logo_rings_09.jpg" alt="Símbolo Audi" style="height:38px;width:auto;margin-bottom:0.7rem;">
             <h2>Audi RS7</h2>
             <div class="especificacoes">
                 <strong>Marca:</strong> Audi<br>
@@ -374,6 +415,7 @@
         </a>
         <a class="carro" href="mercedes-amg-gt.html">
             <img src="https://www.bloomberglinea.com.br/resizer/o_ZzbVlSfenYljGAMfc6Hza6Jus=/arc-photo-bloomberglinea/arc2-prod/public/RI6O6I6CVBCSNCQ2I6ZGFHHPGA.jpg" alt="Mercedes AMG GT">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJb3fBhEkEVmn6M4j7mabt2JC-f1OUK3K8og&s" alt="Símbolo Mercedes-Benz" style="height:38px;width:auto;margin-bottom:0.7rem;">
             <h2>Mercedes AMG GT</h2>
             <div class="especificacoes">
                 <strong>Marca:</strong> Mercedes-Benz<br>
@@ -387,6 +429,7 @@
         </a>
         <a class="carro" href="ferrari-f8.html">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSn0CnujUoUx-ohjWKEUudXl7xTuTco-4wLaQ&s" alt="Ferrari F8 Tributo">
+            <br><img src="https://img.icons8.com/color/512/ferrari-badge.png" alt="Símbolo Ferrari" style="height:38px;width:auto;margin-bottom:0.7rem;">
             <h2>Ferrari F8 Tributo</h2>
             <div class="especificacoes">
                 <strong>Marca:</strong> Ferrari<br>
@@ -399,7 +442,8 @@
             </div>
         </a>
             <a class="carro" href="bugatti-chiron.html">
-                <img src="https://cdn.motor1.com/images/mgl/0ANJb/s1/bugatti-chiron.jpg" alt="Bugatti Chiron">
+                <img src="https://motorshow.com.br/wp-content/uploads/sites/2/2016/03/bugatti-chiron-2.jpg" alt="Bugatti Chiron">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcwQvZ97-nwZ4YxqcycI1Iynbi0JebES960g&s" alt="Símbolo Bugatti" style="height:38px;width:auto;margin-bottom:0.7rem;">
                 <h2>Bugatti Chiron</h2>
                 <div class="especificacoes">
                     <strong>Marca:</strong> Bugatti<br>
@@ -413,7 +457,7 @@
             </a>
     </section>
     <footer>
-        <p>&copy; 2025 Catálogo de Carros. Todos os direitos reservados.</p>
+    <!-- Rodapé sem direitos reservados -->
     </footer>
     <script>
     // Definições de elementos
@@ -454,19 +498,52 @@
         if (e.target === modalBg) modalBg.classList.remove('active');
     });
 
-    // Busca de carros
-    searchInput.addEventListener('input', function() {
+    // Filtro de busca, marca e velocidade máxima
+    function filtrarCarros() {
         const termo = searchInput.value.toLowerCase();
+        const marca = document.getElementById('marca-filter').value;
+        const velocidade = document.getElementById('velocidade-filter').value;
         const cards = carrosList.querySelectorAll('.carro');
         cards.forEach(card => {
             const nome = card.querySelector('h2').textContent.toLowerCase();
-            if (nome.includes(termo)) {
-                card.style.display = '';
-            } else {
-                card.style.display = 'none';
+            const marcaCard = card.querySelector('.especificacoes').innerHTML.match(/Marca:<\/strong>\s*([^<]+)/);
+            const marcaValor = marcaCard ? marcaCard[1].trim() : '';
+            const velocidadeCard = card.querySelector('.especificacoes').innerHTML.match(/0-100 km\/h:<\/strong>\s*([\d,.]+) s/);
+            // Estimar velocidade máxima por modelo (simplificado: Ferrari, Bugatti, Lamborghini, etc. são >350km/h)
+            let vmax = 0;
+            if (/Bugatti Chiron/i.test(nome)) vmax = 420;
+            else if (/Ferrari F8/i.test(nome)) vmax = 340;
+            else if (/Lamborghini Hurac/i.test(nome)) vmax = 325;
+            else if (/BMW M3/i.test(nome)) vmax = 290;
+            else if (/Audi RS7/i.test(nome)) vmax = 305;
+            else if (/Mercedes AMG GT/i.test(nome)) vmax = 318;
+            else if (/Toyota Supra/i.test(nome)) vmax = 250;
+            else if (/Honda Civic/i.test(nome)) vmax = 272;
+            else if (/Subaru WRX/i.test(nome)) vmax = 255;
+            else if (/Volvo S60/i.test(nome)) vmax = 250;
+            else if (/Kia Stinger/i.test(nome)) vmax = 270;
+            else if (/Mazda MX-5/i.test(nome)) vmax = 220;
+            else if (/Renault Megane/i.test(nome)) vmax = 255;
+            else if (/Fiat Toro/i.test(nome)) vmax = 180;
+            else if (/Jeep Compass/i.test(nome)) vmax = 200;
+            else if (/Ford Mustang/i.test(nome)) vmax = 250;
+            else if (/Chevrolet Camaro/i.test(nome)) vmax = 250;
+            // Filtros
+            let show = true;
+            if (termo && !nome.includes(termo)) show = false;
+            if (marca && marcaValor !== marca) show = false;
+            if (velocidade) {
+                if (velocidade === '250' && vmax > 250) show = false;
+                else if (velocidade === '300' && (vmax > 300 || vmax <= 250)) show = false;
+                else if (velocidade === '350' && (vmax > 350 || vmax <= 300)) show = false;
+                else if (velocidade === '400' && vmax <= 350) show = false;
             }
+            card.style.display = show ? '' : 'none';
         });
-    });
+    }
+    searchInput.addEventListener('input', filtrarCarros);
+    document.getElementById('marca-filter').addEventListener('change', filtrarCarros);
+    document.getElementById('velocidade-filter').addEventListener('change', filtrarCarros);
 
     // Mostrar login ao clicar no avatar
     avatarContainer.addEventListener('click', function() {
